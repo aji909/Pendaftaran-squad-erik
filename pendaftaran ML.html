@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Squad ZYRION MLBB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #080b12;
+            --card-bg: rgba(18, 24, 38, 0.85);
+            --primary: #00f2fe;
+            --primary-glow: rgba(0, 242, 254, 0.4);
+            --secondary: #7f00ff;
+            --accent: #ff0055;
+            --text-main: #f0f4f8;
+            --text-muted: #8e9bb0;
+            --border-color: rgba(0, 242, 254, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(127, 0, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(0, 242, 254, 0.15) 0%, transparent 40%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 15px var(--primary-glow);
+            padding: 35px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary), var(--accent));
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .squad-badge {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: inline-block;
+            background: rgba(0, 242, 254, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffffff 30%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px var(--primary-glow);
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .section-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 6px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        label span.sub {
+            color: var(--text-muted);
+            font-weight: 400;
+            font-size: 0.75rem;
+        }
+
+        input, select, textarea {
+            background: rgba(10, 14, 23, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 14px;
+            color: #fff;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px var(--primary-glow);
+            background: rgba(15, 22, 36, 0.9);
+        }
+
+        select option {
+            background: #0d121d;
+            color: #fff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+        }
+
+        .radio-card {
+            position: relative;
+        }
+
+        .radio-card input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .radio-label {
+            display: block;
+            background: rgba(10, 14, 23, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .radio-card input:checked + .radio-label {
+            border-color: var(--primary);
+            background: rgba(0, 242, 254, 0.15);
+            color: var(--primary);
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .btn-submit {
+            margin-top: 30px;
+            width: 100%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.6);
+        }
+
+        /* Modal Preview */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(4, 6, 10, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #111622;
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            max-width: 550px;
+            width: 100%;
+            padding: 25px;
+            box-shadow: 0 0 30px var(--primary-glow);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-header {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .preview-box {
+            background: #080b10;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #a0aec0;
+            white-space: pre-wrap;
+            max-height: 250px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-action {
+            flex: 1;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-wa {
+            background: #25d366;
+            color: #fff;
+        }
+
+        .btn-close {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .full-width {
+                grid-column: span 1;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="squad-badge">MLBB Squad Recruitment</div>
+            <h1>ZYRION ESPORTS</h1>
+            <p>Isi formulir pendaftaran di bawah ini untuk bergabung dengan squad ZYRION</p>
+        </header>
+
+        <form id="regForm">
+            <!-- SECTION 1: DATA DIRI -->
+            <div class="section-title">01. Data Pemain</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="fullName">Nama Lengkap / Panggilan</label>
+                    <input type="text" id="fullName" placeholder="Contoh: Rian / Alex" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsapp">Nomor WhatsApp <span class="sub">(Aktif)</span></label>
+                    <input type="tel" id="whatsapp" placeholder="08xxxxxxxxxx" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Umur & Domisili</label>
+                    <input type="text" id="age" placeholder="Contoh: 17 Tahun, Jakarta" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="device">Perangkat (HP/Device)</label>
+                    <input type="text" id="device" placeholder="Contoh: iPhone 13 / Poco X6 Pro" required>
+                </div>
+            </div>
+
+            <!-- SECTION 2: STATS MLBB -->
+            <div class="section-title">02. Akun & Statistik MLBB</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="ign">Nickname MLBB & ID (Server)</label>
+                    <input type="text" id="ign" placeholder="Contoh: ZyrionKing (12345678/2026)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="currentRank">Rank Saat Ini</label>
+                    <select id="currentRank" required>
+                        <option value="">-- Pilih Rank --</option>
+                        <option value="Epic">Epic</option>
+                        <option value="Legend">Legend</option>
+                        <option value="Mythic Placement/Honor">Mythic (0 - 49 Bintang)</option>
+                        <option value="Mythical Glory">Mythical Glory (50 - 99 Bintang)</option>
+                        <option value="Mythical Immortal">Mythical Immortal (100+ Bintang)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="highestRank">Highest Rank (Bintang/Point)</label>
+                    <input type="text" id="highestRank" placeholder="Contoh: Mythic Immortal 120 Bintang" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="winRate">Overall Win Rate (%)</label>
+                    <input type="number" step="0.1" id="winRate" placeholder="Contoh: 58.5" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="favoriteHeroes">3 Hero Main / Hero Favorit</label>
+                    <input type="text" id="favoriteHeroes" placeholder="Contoh: Ling, Fanny, Hayabusa" required>
+                </div>
+            </div>
+
+            <!-- SECTION 3: ROLE & GAMEPLAY -->
+            <div class="section-title">03. Role & Pertanyaan Squad</div>
+            
+            <div class="form-group full-width" style="margin-bottom: 15px;">
+                <label style="margin-bottom: 8px;">Role Utama Anda</label>
+                <div class="radio-group">
+                    <div class="radio-card">
+                        <input type="radio" name="mainRole" id="role-jungler" value="Jungler" required>
+                        <label for="role-jungler" class="radio-label">Jungler</label>
+                    </div>
+                    <div class="radio-card">
+                        <input type="radio" name="mainRole" id="role-roamer" value="Roamer">
+                        <label for="role-roamer" class="radio-label">Roamer</label>
+                    </div>
+                    <div class="radio-card">
+                        <input type="radio" name="mainRole" id="role-mid" value="Midlaner">
+                        <label for="role-mid" class="radio-label">Midlaner</label>
+                    </div>
+                    <div class="radio-card">
+                        <input type="radio" name="mainRole" id="role-gold" value="Goldlaner">
+                        <label for="role-gold" class="radio-label">Goldlaner</label>
+                    </div>
+                    <div class="radio-card">
+                        <input type="radio" name="mainRole" id="role-exp" value="Explaner">
+                        <label for="role-exp" class="radio-label">Explaner</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="secondaryRole">Role Cadangan / Versatile</label>
+                    <select id="secondaryRole" required>
+                        <option value="">-- Pilih Role Cadangan --</option>
+                        <option value="Jungler">Jungler</option>
+                        <option value="Roamer">Roamer</option>
+                        <option value="Midlaner">Midlaner</option>
+                        <option value="Goldlaner">Goldlaner</option>
+                        <option value="Explaner">Explaner</option>
+                        <option value="All Role">Bisa Semua Role (All Role)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="playTime">Jam Aktif Mabar / Sparring</label>
+                    <input type="text" id="playTime" placeholder="Contoh: 19.00 - 23.00 WIB" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tournamentExp">Pengalaman Turnamen (Jika ada)</label>
+                    <input type="text" id="tournamentExp" placeholder="Contoh: Juara 1 Tourney Lokal / Belum ada">
+                </div>
+
+                <div class="form-group">
+                    <label for="micOn">Siap On-Mic & Tidak Toxic?</label>
+                    <select id="micOn" required>
+                        <option value="Siap On-Mic & Chill">Ya, Siap On-Mic & Tidak Toxic</option>
+                        <option value="Kendala Mic, tapi dengerin">Kendala Mic, tapi bisa dengar In-Game Voice</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="reason">Alasan Ingin Bergabung dengan Squad ZYRION</label>
+                    <textarea id="reason" placeholder="Tuliskan motivasi kamu bergabung dengan squad ZYRION..." required></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">KIRIM PENDAFTARAN</button>
+        </form>
+    </div>
+
+    <!-- MODAL CONFIRMATION -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">FORMULIR SIAP DIKIRIM!</div>
+            <p style="font-size: 0.85rem; color: #a0aec0; margin-bottom: 12px; text-align: center;">Salin format di bawah ini dan kirimkan ke Admin Squad ZYRION melalui WhatsApp:</p>
+            <div class="preview-box" id="previewText"></div>
+            <div class="modal-actions">
+                <button class="btn-action btn-close" onclick="closeModal()">Edit Kembali</button>
+                <button class="btn-action btn-wa" onclick="sendToWhatsApp()">Kirim via WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let formattedMessage = "";
+
+        document.getElementById('regForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const fullName = document.getElementById('fullName').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const age = document.getElementById('age').value;
+            const device = document.getElementById('device').value;
+            const ign = document.getElementById('ign').value;
+            const currentRank = document.getElementById('currentRank').value;
+            const highestRank = document.getElementById('highestRank').value;
+            const winRate = document.getElementById('winRate').value;
+            const favoriteHeroes = document.getElementById('favoriteHeroes').value;
+            const mainRole = document.querySelector('input[name="mainRole"]:checked').value;
+            const secondaryRole = document.getElementById('secondaryRole').value;
+            const playTime = document.getElementById('playTime').value;
+            const tournamentExp = document.getElementById('tournamentExp').value || 'Tidak Ada';
+            const micOn = document.getElementById('micOn').value;
+            const reason = document.getElementById('reason').value;
+
+            formattedMessage = `🏆 *PENDAFTARAN SQUAD ZYRION MLBB* 🏆\n` +
+                `------------------------------------\n` +
+                `👤 *Nama*: ${fullName}\n` +
+                `📱 *WA*: ${whatsapp}\n` +
+                `📍 *Umur/Domisili*: ${age}\n` +
+                `📱 *Device*: ${device}\n\n` +
+                `🎮 *INFORMASI MLBB*\n` +
+                `🔹 *IGN (ID/Server)*: ${ign}\n` +
+                `⚔️ *Role Utama*: ${mainRole}\n` +
+                `🔄 *Role Cadangan*: ${secondaryRole}\n` +
+                `🏅 *Rank Sekarang*: ${currentRank}\n` +
+                `👑 *Highest Rank*: ${highestRank}\n` +
+                `📊 *Overall Win Rate*: ${winRate}%\n` +
+                `🔥 *Hero Main*: ${favoriteHeroes}\n\n` +
+                `⏰ *Jam Aktif*: ${playTime}\n` +
+                `🎙️ *Komunikasi*: ${micOn}\n` +
+                `🥇 *Pengalaman Tourney*: ${tournamentExp}\n` +
+                `💬 *Alasan Join*: ${reason}\n` +
+                `------------------------------------\n` +
+                `Ready for Trial Test Squad ZYRION!`;
+
+            document.getElementById('previewText').textContent = formattedMessage;
+            document.getElementById('modal').style.display = 'flex';
+        });
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function sendToWhatsApp() {
+            // Ganti nomor di bawah ini dengan nomor Admin Squad ZYRION (format 628968231  )
+            const adminPhone = "6281234567890"; 
+            const encodedText = encodeURIComponent(formattedMessage);
+            window.open(`https://wa.me/${adminPhone}?text=${encodedText}`, '_blank');
+        }
+    </script>
+</body>
+</html>
+
